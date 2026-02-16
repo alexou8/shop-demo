@@ -695,27 +695,55 @@ body {
 }
 
 .hero-content {
-  max-width: 700px;
+  max-width: 680px;
   z-index: 1;
 }
 
 .hero-headline {
-  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
   margin-bottom: var(--space-lg);
-  line-height: 1.1;
+  line-height: 1.15;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: -0.03em;
 }
 
 .hero-subtext {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   color: var(--color-text-secondary);
   margin-bottom: var(--space-2xl);
   line-height: var(--line-height-relaxed);
+  max-width: 560px;
 }
 
 .hero-cta {
   display: flex;
-  gap: var(--space-md);
+  gap: var(--space-lg);
   flex-wrap: wrap;
+  align-items: center;
+}
+
+.hero-link {
+  font-size: 1.0625rem;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-accent-secondary);
+  text-decoration: none;
+  position: relative;
+  transition: color var(--duration-normal) var(--easing-standard);
+}
+
+.hero-link:hover {
+  color: var(--color-text-primary);
+}
+
+.hero-link::after {
+  content: '→';
+  margin-left: 0.5rem;
+  transition: transform var(--duration-normal) var(--easing-standard);
+  display: inline-block;
+}
+
+.hero-link:hover::after {
+  transform: translateX(4px);
 }
 
 /* ==================== BADGES ==================== */
@@ -824,12 +852,15 @@ body {
   max-height: 90vh;
   overflow-y: auto;
   box-shadow: var(--shadow-2xl);
-  transform: scale(0.9);
-  transition: transform var(--duration-normal) var(--easing-bounce);
+  transform: scale(0.95);
+  opacity: 0;
+  transition: transform var(--duration-normal) var(--easing-standard),
+              opacity var(--duration-normal) var(--easing-standard);
 }
 
 .modal-overlay.active .modal {
   transform: scale(1);
+  opacity: 1;
 }
 
 .modal-header {
