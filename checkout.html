@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Complete your purchase">
+  <title>Checkout - Luxe Shop</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <style>
+    .checkout-layout {
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: var(--space-3xl);
+      align-items: start;
+    }
+    
+    @media (max-width: 1024px) {
+      .checkout-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .checkout-section {
+      background-color: var(--color-bg-secondary);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-xl);
+      margin-bottom: var(--space-lg);
+    }
+    
+    .checkout-section h3 {
+      margin-bottom: var(--space-lg);
+    }
+    
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+    }
+    
+    @media (max-width: 767px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .checkout-item {
+      display: flex;
+      justify-content: space-between;
+      padding: var(--space-sm) 0;
+      font-size: 0.9375rem;
+      color: var(--color-text-secondary);
+    }
+  </style>
+</head>
+<body data-page="checkout">
+
+  <!-- Navigation -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <a href="index.html" class="navbar-logo" aria-label="Luxe Shop Home">LUXE</a>
+      
+      <div class="navbar-search" role="search">
+        <input type="search" placeholder="Search products..." aria-label="Search products">
+      </div>
+      
+      <ul class="navbar-nav">
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+      
+      <div class="navbar-icons">
+        <button class="icon-btn" id="dark-mode-toggle" aria-label="Toggle dark mode">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+        </button>
+        
+        <a href="cart.html" class="icon-btn cart-icon-btn" aria-label="Shopping cart">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+          <span class="cart-badge" style="display: none;">0</span>
+        </a>
+        
+        <button class="icon-btn mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main>
+    <section class="section visible" style="padding-top: var(--space-2xl);">
+      <div class="container">
+        <h1 style="margin-bottom: var(--space-xl);">Checkout</h1>
+
+        <!-- Stepper -->
+        <div class="stepper" style="margin-bottom: var(--space-3xl);">
+          <div class="step active">
+            <div class="step-circle">1</div>
+            <div class="step-label">Information</div>
+          </div>
+          <div class="step">
+            <div class="step-circle">2</div>
+            <div class="step-label">Shipping</div>
+          </div>
+          <div class="step">
+            <div class="step-circle">3</div>
+            <div class="step-label">Payment</div>
+          </div>
+        </div>
+
+        <div class="checkout-layout">
+          <!-- Checkout Form -->
+          <div>
+            <form id="checkout-form">
+              <!-- Contact Information -->
+              <div class="checkout-section">
+                <h3>Contact Information</h3>
+                
+                <div class="form-group">
+                  <label class="form-label" for="email">Email Address *</label>
+                  <input 
+                    type="email" 
+                    id="email" 
+                    class="form-input" 
+                    required
+                    placeholder="you@example.com"
+                  >
+                  <span class="form-error">Please enter a valid email</span>
+                </div>
+              </div>
+
+              <!-- Shipping Address -->
+              <div class="checkout-section">
+                <h3>Shipping Address</h3>
+                
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label" for="first-name">First Name *</label>
+                    <input 
+                      type="text" 
+                      id="first-name" 
+                      class="form-input" 
+                      required
+                      placeholder="John"
+                    >
+                    <span class="form-error">This field is required</span>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label class="form-label" for="last-name">Last Name *</label>
+                    <input 
+                      type="text" 
+                      id="last-name" 
+                      class="form-input" 
+                      required
+                      placeholder="Doe"
+                    >
+                    <span class="form-error">This field is required</span>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label class="form-label" for="address">Address *</label>
+                  <input 
+                    type="text" 
+                    id="address" 
+                    class="form-input" 
+                    required
+                    placeholder="123 Main Street"
+                  >
+                  <span class="form-error">This field is required</span>
+                </div>
+                
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label" for="city">City *</label>
+                    <input 
+                      type="text" 
+                      id="city" 
+                      class="form-input" 
+                      required
+                      placeholder="San Francisco"
+                    >
+                    <span class="form-error">This field is required</span>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label class="form-label" for="state">State *</label>
+                    <input 
+                      type="text" 
+                      id="state" 
+                      class="form-input" 
+                      required
+                      placeholder="CA"
+                    >
+                    <span class="form-error">This field is required</span>
+                  </div>
+                </div>
+                
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label" for="zip">ZIP Code *</label>
+                    <input 
+                      type="text" 
+                      id="zip" 
+                      class="form-input" 
+                      required
+                      placeholder="94102"
+                    >
+                    <span class="form-error">This field is required</span>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label class="form-label" for="phone">Phone *</label>
+                    <input 
+                      type="tel" 
+                      id="phone" 
+                      class="form-input" 
+                      required
+                      placeholder="(555) 123-4567"
+                    >
+                    <span class="form-error">This field is required</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Payment Information -->
+              <div class="checkout-section">
+                <h3>Payment Information</h3>
+                
+                <div class="form-group">
+                  <label class="form-label" for="card-number">Card Number *</label>
+                  <input 
+                    type="text" 
+                    id="card-number" 
+                    class="form-input" 
+                    required
+                    placeholder="1234 5678 9012 3456"
+                    maxlength="19"
+                  >
+                  <span class="form-error">Please enter a valid card number</span>
+                </div>
+                
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label" for="expiry">Expiry Date *</label>
+                    <input 
+                      type="text" 
+                      id="expiry" 
+                      class="form-input" 
+                      required
+                      placeholder="MM/YY"
+                    >
+                    <span class="form-error">This field is required</span>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label class="form-label" for="cvv">CVV *</label>
+                    <input 
+                      type="text" 
+                      id="cvv" 
+                      class="form-input" 
+                      required
+                      placeholder="123"
+                      maxlength="4"
+                    >
+                    <span class="form-error">This field is required</span>
+                  </div>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+                Place Order
+              </button>
+            </form>
+          </div>
+
+          <!-- Order Summary -->
+          <div class="cart-summary">
+            <h3>Order Summary</h3>
+            
+            <div id="checkout-items" style="margin-bottom: var(--space-lg); border-bottom: 1px solid var(--color-border); padding-bottom: var(--space-lg);">
+              <!-- Items will be rendered here by JavaScript -->
+            </div>
+            
+            <div class="summary-row">
+              <span>Subtotal</span>
+              <span id="checkout-subtotal">$0.00</span>
+            </div>
+            
+            <div class="summary-row">
+              <span>Tax (8%)</span>
+              <span id="checkout-tax">$0.00</span>
+            </div>
+            
+            <div class="summary-row">
+              <span>Shipping</span>
+              <span id="checkout-shipping">$0.00</span>
+            </div>
+            
+            <div class="summary-row total">
+              <span>Total</span>
+              <span id="checkout-total">$0.00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Success Modal -->
+  <div class="modal-overlay" id="success-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 class="modal-title">Order Successful!</h2>
+      </div>
+      <div class="modal-body" style="text-align: center;">
+        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2" style="margin: var(--space-lg) auto;">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+          <polyline points="22 4 12 14.01 9 11.01"/>
+        </svg>
+        <p style="font-size: 1.125rem; margin-bottom: var(--space-md);">
+          Thank you for your order!
+        </p>
+        <p style="color: var(--color-text-secondary);">
+          You will receive a confirmation email shortly.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h4>Shop</h4>
+          <ul class="footer-links">
+            <li><a href="shop.html">All Products</a></li>
+            <li><a href="shop.html?category=Accessories">Accessories</a></li>
+            <li><a href="shop.html?category=Clothing">Clothing</a></li>
+            <li><a href="shop.html?category=Tech">Tech</a></li>
+            <li><a href="shop.html?category=Home">Home</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Company</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="about.html#faq">FAQ</a></li>
+            <li><a href="about.html#contact">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Support</h4>
+          <ul class="footer-links">
+            <li><a href="#">Shipping Info</a></li>
+            <li><a href="#">Returns</a></li>
+            <li><a href="#">Size Guide</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Newsletter</h4>
+          <p style="color: var(--color-text-secondary); font-size: 0.9375rem; margin-bottom: var(--space-md);">
+            Subscribe for updates and exclusive offers
+          </p>
+          <form class="footer-newsletter" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
+            <input type="email" class="form-input" placeholder="Your email" required aria-label="Email address">
+            <button type="submit" class="btn btn-primary">Join</button>
+          </form>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <div class="footer-social">
+          <a href="#" class="social-icon" aria-label="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+            </svg>
+          </a>
+          <a href="#" class="social-icon" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+          </a>
+          <a href="#" class="social-icon" aria-label="Twitter">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+            </svg>
+          </a>
+        </div>
+        <p style="margin-top: var(--space-md);">
+          &copy; 2024 Luxe Shop. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/data.js"></script>
+  <script src="assets/utils.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
