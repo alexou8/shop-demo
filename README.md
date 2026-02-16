@@ -1,5 +1,7 @@
 # Luxe Shop - Minimalist E-commerce Demo
 
+[![Deploy to GitHub Pages](https://github.com/alexou8/shop-demo/actions/workflows/deploy.yml/badge.svg)](https://github.com/alexou8/shop-demo/actions/workflows/deploy.yml)
+
 A complete, offline-first, modern sample e-commerce website built with pure HTML, CSS, and JavaScript. Features a "Minimalist luxury × bold playful" aesthetic with premium design and delightful interactions.
 
 ## 🌟 Features
